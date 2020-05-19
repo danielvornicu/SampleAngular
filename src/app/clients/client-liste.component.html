@@ -1,0 +1,73 @@
+<div class='card'>
+    <div class='card-header'>
+      <div class="row">
+          <div class="col-md-8">
+              <h1>{{ msg.liste.clients.angular.titre}}</h1>
+          </div>
+      </div>
+    </div>
+  
+    <div class='card-body'>
+      <div class='row'>
+        <div class='col-md-2'>{{ msg.liste.actions.filtrerParPrenom}}</div>
+        <div class='col-md-4'>
+          <input type='text'
+                 [(ngModel)]='listFilter' />
+        </div>
+      </div>
+      <div class='row'
+           *ngIf='listFilter'>
+        <div class='col-md-6'>
+          <h6>{{ msg.liste.actions.filtreListe}} {{listFilter}}</h6>
+        </div>
+      </div>
+
+      <div class='table-responsive'>
+        <table class="table table-bordered table-striped"
+            *ngIf='clients && clients.length'
+               >
+          <thead>
+            <tr>
+              <th>{{ msg.fiche.client.nom}}</th>
+              <th>{{ msg.fiche.client.prenom}}</th>
+              <th>{{ msg.liste.actions.titre}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let client of filteredClients'>
+                    <td>{{ client.nom }}</td>
+                    <td>{{ client.prenom }}</td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm"
+                                title="{{msg.liste.actions.consulterTitle}}"
+                                [routerLink]="['/clients', client.id]">{{ msg.liste.actions.consulter}}
+                        </button> |
+                        <button class="btn btn-outline-primary btn-sm"
+                                title="{{msg.liste.actions.modifierTitle}}"
+                                [routerLink]="['/clients', client.id, 'edit']">{{ msg.liste.actions.modifier}}
+                        </button> |
+                        <button class="btn btn-outline-primary btn-sm"
+                               title="{{msg.liste.actions.supprimerTitle}}"
+                               (click)='delete(client.id, client.nom, client.prenom)'>{{ msg.liste.actions.supprimer}}
+                        </button>
+                    </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel">
+          <button id='create_bouton'  
+                  class="btn btn btn-outline-primary btn-sm"
+                  title="{{ msg.fiche.boutons.creerTitle}}"
+                  [routerLink]="['/clients/new']">{{ msg.fiche.boutons.creer}}
+
+          </button>
+      </div>
+    </div>
+
+    <div *ngIf='errorMessage'
+        class='alert alert-danger'>Error: {{ errorMessage }}
+    </div>
+
+  </div>
+

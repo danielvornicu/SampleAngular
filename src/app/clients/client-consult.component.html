@@ -1,0 +1,37 @@
+<div class='card'
+     *ngIf='client'>
+     
+  <div class='card-header'>
+    <h4>{{ msg.fiche.client.titres.consultation  + client.prenom + ' ' + client.nom}}</h4>
+  </div>
+
+  <div class='card-body'>
+    <div class='row'>
+      <div class='col-md-2'>{{ msg.fiche.client.nom}}</div>
+      <div class='col-md-4'>{{client.nom}}</div>
+    </div>
+    <div class='row'>
+      <div class='col-md-2'>{{ msg.fiche.client.prenom}}</div>
+      <div class='col-md-4'>{{client.prenom }}</div>
+    </div>
+  </div>
+
+  <div class='card-footer'>
+    <button class='btn btn-outline-secondary'
+            (click)='onBack()'
+            style='width:100px'>
+      <i class='fa fa-chevron-left'></i> {{ msg.fiche.boutons.annuler}}
+    </button>
+
+    <button class="btn btn-outline-primary"
+          style="width:100px"
+          title="{{msg.liste.actions.modifierTitle}}"
+          [routerLink]="['/clients', client.id, 'edit']">{{ msg.liste.actions.modifier}}
+    </button>
+  </div> 
+
+  <div *ngIf='errorMessage'
+        class='alert alert-danger'>Error: {{ errorMessage }}
+  </div>
+
+</div>

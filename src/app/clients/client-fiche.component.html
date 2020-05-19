@@ -1,0 +1,75 @@
+<div class="card">
+
+  <form novalidate
+    (ngSubmit)="save()"
+    [formGroup]="clientForm">
+
+    <div class="card-header">
+        <h4>{{pageTitle}}</h4>
+    </div>
+  
+    <div class="card-body">
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label"
+                  for="clientNomId">{{ msg.fiche.client.nom}}</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                    id="clientNomId"
+                    type="text"
+                    placeholder="{{ msg.fiche.client.nomPlaceHolder}}"
+                    formControlName="nom"
+                    [ngClass]="{'is-invalid': displayMessage.nom }" />
+            <span class="invalid-feedback">
+              {{displayMessage.nom}}
+            </span>
+          </div>
+        </div>
+  
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label"
+                  for="clientPrenomId">{{ msg.fiche.client.prenom}}</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                    id="clientPrenomId"
+                    type="text"
+                    placeholder="{{ msg.fiche.client.prenomPlaceHolder}}"
+                    formControlName="prenom"
+                    [ngClass]="{'is-invalid': displayMessage.prenom}" />
+            <span class="invalid-feedback">
+              {{displayMessage.prenom}}
+            </span>
+          </div>
+        </div>
+    </div>
+
+    <div class='card-footer'>
+      <button class="btn btn-primary mr-3"
+              style="width:100px;"
+              type="submit"
+              [title]="clientForm.valid ? 'Valider et enregistrer les données du client' : 'Desactivé si données invalides'"
+              [disabled]="!clientForm.valid">{{ msg.fiche.boutons.valider}}
+
+      </button>
+      <button class="btn btn-outline-secondary mr-3"
+              style="width:100px;"
+              type="button"
+              title="{{ msg.fiche.boutons.annulerTitle}}"
+              [routerLink]="['/clients']">{{ msg.fiche.boutons.annuler}}
+      </button>  
+      <button class="btn btn-outline-warning"
+            style="width:100px"
+            type="button"
+            title="{{ msg.fiche.boutons.supprismerTitle}}"
+            [hidden]="!clientForm.valid"
+            (click)="delete()">{{ msg.fiche.boutons.supprimer}}
+      </button>        
+    </div>
+  </form>
+
+  <div *ngIf='errorMessage'
+      class='alert alert-danger'>Error: {{ errorMessage }}
+  </div>
+
+</div>
+  
+<!-- <br>Value: {{ clientForm.value | json }} -->
