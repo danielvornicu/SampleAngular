@@ -7,7 +7,7 @@
     <div class="card-header">
         <h4>{{pageTitle}}</h4>
     </div>
-  
+
     <div class="card-body">
         <div class="form-group row mb-2">
           <label class="col-md-2 col-form-label"
@@ -24,7 +24,7 @@
             </span>
           </div>
         </div>
-  
+
         <div class="form-group row mb-2">
           <label class="col-md-2 col-form-label"
                   for="clientPrenomId">{{ msg.fiche.client.prenom}}</label>
@@ -55,14 +55,14 @@
               type="button"
               title="{{ msg.fiche.boutons.annulerTitle}}"
               [routerLink]="['/clients']">{{ msg.fiche.boutons.annuler}}
-      </button>  
+      </button>
       <button class="btn btn-outline-warning"
             style="width:100px"
             type="button"
-            title="{{ msg.fiche.boutons.supprismerTitle}}"
+            title="{{ msg.fiche.boutons.supprimerTitle}}"
             [hidden]="!clientForm.valid"
             (click)="delete()">{{ msg.fiche.boutons.supprimer}}
-      </button>        
+      </button>
     </div>
   </form>
 
@@ -71,5 +71,5 @@
   </div>
 
 </div>
-  
+
 <!-- <br>Value: {{ clientForm.value | json }} -->
